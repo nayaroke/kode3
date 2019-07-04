@@ -66,6 +66,20 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
+$(document).ready(function() {
+    $('iframe[src*="youtube.com"]').wrap('<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:0 auto;width:100%"></div>').css({
+        "position": "absolute",
+        "top": "0",
+        "left": "0",
+        "width": "100%",
+        "height": "100%",
+        "border": "0"
+    }).addClass("lazyload").each(function() {
+        $(this).attr("data-src", $(this).attr("src"));
+        $(this).removeAttr("src", "")
+    });
+});
+
 var x=document.querySelectorAll(".lazyloadimg"),i;for(i=0;i<x.length;i++)x[i].innerHTML=x[i].innerHTML.replace("<!--","").replace("-->","");
 setTimeout(function(){
 (function() { var x=document.querySelectorAll(".lazyloading"),i;for(i=0;i<x.length;i++)x[i].innerHTML=x[i].innerHTML.replace("<!--","").replace("-->",""); })();
